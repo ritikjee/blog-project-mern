@@ -6,7 +6,7 @@ import Comment from '../models/comments.model.js';
 
 export const getBlogPosts = async (req, res) => {
     try {
-        const blogPosts = await Blog.find();
+        const blogPosts = await Blog.find().populate('topic').populate('comments').populate('likes').populate('dislikes');
         res.status(200).json({ blogs: blogPosts });
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -70,20 +70,7 @@ export const addBlogTopic = async (req, res) => {
 
 }
 
-export const addComment = async (req, res) => {
-    const {id,userId,content,rating} = req.body;
-    const blog =await Blog.findById(id);
-    const user =await  User.findById(userId);
-    const comment = new Comment({content, rating,});
-    await comment.save();
-    // const result = await comment.save();
-    blog.comments.push(comment);
-    await blog.save();
-    user.comments.push(comment);
-    await user.save();
 
-    res.status(201).json(comment);
-}
 
 export const likeBlog = async (req, res) => {
     const {blogId,userId} = await req.body;

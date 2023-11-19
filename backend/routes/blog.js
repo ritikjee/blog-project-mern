@@ -1,5 +1,5 @@
 import express from 'express';
-import { getBlogPosts,addBlogPost,updateBlogPost,deleteBlogPost,addBlogTopic,addComment,likeBlog,dislikeBlog,removeDislikeBlog,removeLikeBlog } from '../controllers/blog.js';
+import { getBlogPosts,addBlogPost,updateBlogPost,deleteBlogPost,addBlogTopic,likeBlog,dislikeBlog,removeDislikeBlog,removeLikeBlog } from '../controllers/blog.js';
 
 
 const blogRouter = express.Router();
@@ -13,7 +13,7 @@ blogRouter.route('/likeBlog/').post(likeBlog);
 blogRouter.route('/removeLikeBlog/').post(removeLikeBlog);
 blogRouter.route('/dislikeBlog/').post(dislikeBlog);
 blogRouter.route('/removeDislikeBlog/').post(removeDislikeBlog);
-blogRouter.route('/addComment').post(addComment);
+// blogRouter.route('/addComment').post(addComment);
 
 
 export default blogRouter;
