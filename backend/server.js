@@ -4,6 +4,7 @@ import cors from 'cors';
 import connectDB from './config/db.js';
 import blogRouter from './routes/blog.js';
 import topicRouter from './routes/topic.js';
+import userRouter from './routes/users.js';
 dotenv.config();
 const port = process.env.PORT || 5000;
 
@@ -15,6 +16,7 @@ app.use(cors());
 
 app.use('/api/blogs', blogRouter);
 app.use('/api/topics', topicRouter);
+app.use('/api/users', userRouter);
 
 app.listen(port, () => {
     console.log(`Server is ready at http://localhost:${port}`);

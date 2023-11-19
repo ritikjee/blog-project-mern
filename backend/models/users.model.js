@@ -77,16 +77,22 @@ const userSchema = mongoose.Schema({
             ref: 'Blog'
         }
     ],
-    likes: [
+    comments: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Blog'
+            ref: 'Comment'
         }
     ],
-    dislikes: [
+    likedComments: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Blog'
+            ref: 'Comment'
+        }
+    ],
+    dislikedComments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Comment'
         }
     ],
 
