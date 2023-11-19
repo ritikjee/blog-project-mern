@@ -20,3 +20,5 @@ const topicSchema = mongoose.Schema({
 });
 
 const Topic = mongoose.model('Topic', topicSchema);
+
+export default Topic;
