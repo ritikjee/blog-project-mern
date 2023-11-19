@@ -9,6 +9,10 @@ const commentSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    rating: {
+        type: Number,
+        default: 0
+    },
     likes: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -31,3 +35,6 @@ const commentSchema = mongoose.Schema({
     }
 );
 
+const Comment = mongoose.model('Comment', commentSchema);
+
+export default Comment;

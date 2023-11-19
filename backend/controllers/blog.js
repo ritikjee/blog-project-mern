@@ -1,6 +1,8 @@
+import mongoose from 'mongoose';
 import Blog from '../models/blog.model.js';
 import Topic from '../models/topic.model.js';
-import mongoose from 'mongoose';
+import User from '../models/users.model.js';
+import Comment from '../models/comment.model.js';
 
 export const getBlogPosts = async (req, res) => {
     try {
@@ -66,4 +68,13 @@ export const addBlogTopic = async (req, res) => {
         res.status(409).json({ message: error.message });
     }
 
+}
+
+export const addComment = async (req, res) => {
+    const {id,userId,content,rating} = req.body;
+    const blog = Blog.findById(id);
+    const user = User.findById(userId);
+    const comment = new Comment({content,user,blog,rating});
+    await comment.save();
+    blog.comments.push(comment);
 }

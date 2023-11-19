@@ -8,6 +8,10 @@ const userSchema = mongoose.Schema({
         max: 20,
         unique: true
     },
+    bio: {
+        type: String,
+        max: 100
+    },
     name: {
         type: String,
         required: true,
@@ -51,21 +55,21 @@ const userSchema = mongoose.Schema({
             ref: 'User'
         }
     ],
+    likedBlogs: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Blog'
+        }
+    ],
+    dislikedBlogs: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Blog'
+        }
+    ],
     isAdmin: {
         type: Boolean,
         default: false
-    },
-    description: {
-        type: String,
-        max: 50
-    },
-    city: {
-        type: String,
-        max: 50
-    },
-    from: {
-        type: String,
-        max: 50
     },
     blogs: [
         {
@@ -88,3 +92,7 @@ const userSchema = mongoose.Schema({
 
    
 }, { timestamps: true });
+
+const User = mongoose.model('User', userSchema);
+
+export default User;
