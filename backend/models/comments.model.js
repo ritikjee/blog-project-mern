@@ -28,7 +28,13 @@ const commentSchema = mongoose.Schema({
     blog: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Blog'
-    }
+    },
+    replyComments: [
+        {
+            type: [this],
+            default: undefined
+        }
+    ]
 },
     {
         timestamps: true

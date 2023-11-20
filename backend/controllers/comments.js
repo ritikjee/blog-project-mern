@@ -5,7 +5,7 @@ import User from '../models/users.model.js';
 
 export const getComments = async (req, res) => {
     try {
-        const comments = await Comment.find();
+        const comments = await Comment.find().populate('user', 'username').populate('blog', 'title');
         res.status(200).json(comments);
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -16,7 +16,7 @@ export const addComment = async (req, res) => {
     const { id, userId, content, rating } = req.body;
     const blog = await Blog.findById(id);
     const user = await User.findById(userId);
-    const comment = new Comment({ content, rating, });
+    const comment = new Comment({ content, rating, blog, user});
     await comment.save();
     blog.comments.push(comment);
     await blog.save();
@@ -51,3 +51,20 @@ export const deleteComment = async (req, res) => {
     }
 }
 
+export const addReplyComment = async (req, res) => {
+    try {
+        const {commentId, userId, content,rating} = req.body;
+        const comment = await Comment.findById(commentId);
+        const user = await User.findById(userId);
+        const replyComment = new Comment({content,user,rating});
+        const data =await replyComment.save();
+        comment.replyComments.push(data);    
+        await comment.save();
+        user.comments.push(replyComment);
+        await user.save();
+        res.status(201).send({msg:"Horray"})        
+    } catch (error) {
+        console.log(error)
+        res.status(409).json({ message: error.message });
+    }
+}
