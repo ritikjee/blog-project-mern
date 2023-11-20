@@ -26,10 +26,10 @@ function Navbar() {
                         <button className='bg-[#2270E2] text-xl hidden md:flex font-semibold text-white px-[18px] py-[8px] rounded-lg'>
                             Login
                         </button>
-                        {!show?<GiHamburgerMenu className='md:hidden text-[32px]' 
+                        {!show?<GiHamburgerMenu className='md:hidden text-[32px] hover:cursor-pointer' 
                         onClick={() => setShow(true)}
                         />:
-                        <IoClose className='md:hidden text-[42px]'
+                        <IoClose className='md:hidden text-[42px] hover:cursor-pointer'
                         onClick={() => setShow(false)}
                         />}
                     </div>
