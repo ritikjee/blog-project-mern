@@ -7,7 +7,7 @@ function Footer() {
         <>
             <div className="flex items-center py-20 bg-[#8EFBDAA3] justify-center">
                 <div className='max-w-7xl w-full px-7 flex flex-col sm:flex-row items-center justify-between'>
-                    <div>
+                    <div className="py-7">
                         <p className="text-[32px] font-bold pb-[10px]">Sign up for Newsletter </p>
                         <p className="text-[16px]">Get the latest news and updates from Horizon</p>
                     </div>
