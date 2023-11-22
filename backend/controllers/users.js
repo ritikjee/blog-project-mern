@@ -21,41 +21,25 @@ export const getUsers = async (req, res) => {
    
 }
 
-export const addUser = async (req, res) => {
-    const user = req.body;
-    const newUser = new User(user);
+export const registerUser = async (req, res) => {
+    const { email, password, name ,username,bio,profilePicture,coverPicture} = req.body;
+    const res=mongoose.find({email:email})
+    const res2=mongoose.find({username:username})
+    if(res||res2){
+        res.status(409).json({ message: "user already exists" });
+    }
+
+
     try {
-        await newUser.save();
-        res.status(201).json(newUser);
+
+        const user = await User.create({ name, password, email,username,bio,profilePicture,coverPicture });
+        res.status(201).json({ user });
     } catch (error) {
         res.status(409).json({ message: error.message });
     }
 }
 
-export const updateUser = async (req, res) => {
-    const { id: _id } = req.params;
-    const user = req.body;
-    try {
-        if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No user with that id');
-        const updatedUser = await User.findByIdAndUpdate(_id, user, { new: true });
-        res.json(updatedUser);
-    }
-    catch {
-        res.status(409).json({ message: error.message });
-
-    }
-}
-
-export const deleteUser = async (req, res) => {
-    const { id } = req.params;
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No user with that id');
-    try {
-        await User.findByIdAndDelete(id);
-        res.json({ message: 'User deleted successfully' });
-    }
-    catch (error) {
-        res.status(409).json({ message: error.message });
-    }
+const loginUser = async (req, res) => {
 }
 
 export const getSingleUser = async (req, res) => {
