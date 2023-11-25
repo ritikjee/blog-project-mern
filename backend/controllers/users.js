@@ -23,7 +23,7 @@ export const getUsers = async (req, res) => {
 
 export const registerUser = async (req, res) => {
     const { email, password, name ,username,bio,profilePicture,coverPicture} = req.body;
-    const res=mongoose.find({email:email})
+    const res1=mongoose.find({email:email})
     const res2=mongoose.find({username:username})
     if(res||res2){
         res.status(409).json({ message: "user already exists" });
@@ -39,7 +39,7 @@ export const registerUser = async (req, res) => {
     }
 }
 
-const loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
 }
 
 export const getSingleUser = async (req, res) => {

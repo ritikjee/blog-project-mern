@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Blog from './pages/Blog'
 import AddBlog from './pages/AddBlog'
+import Tags from './pages/Tags'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
             <Route exact path='/' element={<Home/>} />
             <Route path='/blog/:blogId' element={<Blog/>} />
             <Route path='/addBlog' element={<AddBlog/>} />
+            <Route path='/tags' element={<Tags/>}/>
             <Route path='*' element={<h1>Not Found</h1>} />
           </Routes>
         </Router>
